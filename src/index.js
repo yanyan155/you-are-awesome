@@ -52,10 +52,31 @@ const createIncrementer = () => {
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+
+const getDeepPropertiesCount = (obj) => {
+	var count = 0;
+	function recursion (obj) {
+		for (var key in obj) {
+			count++;
+			if (Object.keys(obj[key]).length > 0) {
+				var res = recursion(obj[key]);
+			}
+		}
+		return count;
+	}
+	return recursion(obj);
+};
+
+const createSerializedObject = () => {
+	
+};
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (array) => {
+	var res = array.sort(function(a, b) {
+	  return a.isPrototypeOf(b);
+	});
+	return res;
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
